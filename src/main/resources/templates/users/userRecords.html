@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number of Users</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+      body {
+        font-family: "Share Tech Mono", monospace;
+        background-color: #0d0d0d;
+        color: #00ff00;
+      }
+
+      .container {
+        background-color: #1a1a1a;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+      }
+
+      h2 {
+        text-align: center;
+        color: #00ff00;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 0 0 5px #00ff00;
+      }
+
+      table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #00ff00;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      th {
+        background-color: #121212;
+        color: white;
+        text-shadow: 0 0 3px slategrey;
+      }
+
+      td {
+        background-color: #0d0d0d;
+        color: #00ff00;
+        box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.5);
+      }
+
+      tr:hover td {
+        background-color: #0b3d0b;
+        transform: scale(1.03);
+      }
+
+      .btn {
+        margin: 0 5px;
+        color: #fff;
+      }
+
+      .btn-warning {
+        background-color: #ff8000;
+        border: none;
+      }
+
+      .btn-danger {
+        background-color: #ff0000;
+        border: none;
+      }
+
+      .btn-success {
+        background-color: #008000;
+        border: none;
+        text-shadow: 0 0 3px #00ff00;
+      }
+
+      .btn:hover {
+        opacity: 0.85;
+      }
+
+      /* Center the 'Create New User' button */
+      .center-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      /* Style the form for deletion */
+      form {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+      }
+
+      form button {
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #ff0000;
+        text-shadow: 0 0 3px #ff0000;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      form button:hover {
+        background-color: #e60000;
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        transform: scale(1.05);
+      }
+
+      a,
+      .btn {
+        text-shadow: 0 0 3px #00ff00;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h2>User Records</h2>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>User Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${userRecords}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+              <a
+                th:href="@{/user/edit/{id}(id=${user.id})}"
+                class="btn btn-warning"
+                >Edit</a
+              >
+              <form
+                th:action="@{/user/delete/{id}(id=${user.id})}"
+                method="post"
+                onsubmit="return confirmDelete()"
+              >
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Centered Button -->
+      <div class="center-btn">
+        <a href="/register" class="btn btn-success">Add User</a>
+      </div>
+    </div>
+
+    <script>
+      function confirmDelete() {
+        return confirm("Confirm deletion of this user?");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  padding: 30px 0px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #333;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: large;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Main and Logout Navigation */
+.main-nav {
+  justify-content: flex-start;
+}
+
+.logout-nav {
+  justify-content: flex-end;
+  border: transparent;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.logout-nav:hover{
+  background-color: #0066cc;
+}
+
+.logout-nav a{
+  color: black;
+  font-weight: bold;
+}
+
+.logout-nav a:hover{
+  color: white;
+}
+
+/* Responsive Navigation: Centers logout on smaller screens */
+@media (max-width: 768px) {
+  .logout-nav {
+    justify-content: center;
+  }
+}
+
+.intro {
+  background: #4297ec;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.intro button {
+  background-color: #fff;
+  color: #0066cc;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.intro button:hover {
+  background-color: #004c99;
+  color: #fff;
+}
+
+section {
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  margin-top: 0;
+  color: #333;
+  text-align: center;
+}
+
+section p {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.course-list,
+.featured-course-list,
+.testimonial-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.course-item,
+.featured-course-item,
+.testimonial-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  flex-basis: 15%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.course-item img {
+  max-width: 100%;
+  height: 130px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.course-item h3 {
+  color: #333;
+}
+
+.course-item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.course-item a {
+  text-decoration: none;
+}
+
+.featured-course-item {
+  background-color: #e6f7ff;
+  border: 1px solid #b3e0ff;
+}
+
+.featured-course-item button {
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.featured-course-item button:hover {
+  background-color: #004c99;
+}
+
+#newsletter {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#newsletter form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#newsletter input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  flex: 1;
+}
+
+#newsletter button {
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#newsletter button:hover {
+  background-color: #004c99;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Online Learning Platform</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="logout-nav">
+                <li><a href="/login" id="logoutBtn">Logout</a></li>
+                <li><a th:href="@{/users}" class="btn btn-primary" id="logoutBtn">View User Record</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="intro">
+        <h2>Empower Your Skills with Online Learning</h2>
+        <p>Join thousands of learners from around the world in mastering new skills, advancing your career, and earning
+            certificates through our online courses.</p>
+        <button onclick="window.location.href='#courses'">Browse Courses</button>
+    </section>
+
+    <section id="courses">
+        <h2>Our Courses</h2>
+        <p>Explore a wide range of courses designed for all levels.</p>
+
+        <div class="course-list">
+            <div class="course-item">
+                <a href="#"><img src="https://cdn.kenzie.academy/wp-content/uploads/prod/2020/11/02155935/AdobeStock_241083104-1400x934.jpg"
+                    alt="Introduction to Programming">
+                <h3>Introduction to Programming</h3>
+                <p>Learn the basics of programming with Python.</p></a>
+            </div>
+            <div class="course-item">
+               <a href=""> <img src="https://pluspng.com/img-png/web-development-png-web-development-1100.png"
+                    alt="Web Development">
+                <h3>Web Development</h3>
+                <p>Build dynamic and responsive websites using HTML, CSS, and JavaScript.</p></a>
+            </div>
+            <div class="course-item">
+               <a href=""><img src="https://tse2.mm.bing.net/th?id=OIP.sgfANV04uRrGZbJHdtVynwHaFQ&pid=Api&P=0&h=220" alt="Data Science">
+                <h3>Data Science</h3>
+                <p>Dive into data analysis and machine learning with Python.</p></a> 
+            </div>
+            <div class="course-item">
+                <a href=""><img src="https://www.dailyclicks.net/wp-content/uploads/2021/07/digital-marketing-and-seo.jpg"
+                    alt="Digital Marketing">
+                <h3>Digital Marketing</h3>
+                <p>Master the art of online marketing and SEO strategies.</p></a> 
+            </div>
+            <div class="course-item">
+                <a href=""><img src="https://tse3.mm.bing.net/th?id=OIP.QGD3dQzztJJZuPbYn8kk0wHaFj&pid=Api&P=0&h=220"
+                    alt="Cybersecurity Basics">
+                <h3>Cybersecurity Basics</h3>
+                <p>Understand the fundamentals of protecting systems and data from cyber threats.</p></a> 
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-courses">
+        <h2>Featured Courses</h2>
+        <div class="featured-course-list">
+            <div class="featured-course-item">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.6tfIMnOXRU_oeUkff7-OGAHaEK&pid=Api&P=0&h=220"
+                    alt="Advanced Python">
+                <h3>Advanced Python</h3>
+                <p>Take your Python skills to the next level with this advanced course.</p>
+                <button onclick="window.location.href='#'">Learn More</button>
+            </div>
+            <div class="featured-course-item">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.QyJagH6OYNVD7BfjPlYcxAHaE8&pid=Api&P=0&h=220"
+                    alt="Full Stack Development">
+                <h3>Full Stack Development</h3>
+                <p>Master both front-end and back-end development in this comprehensive course.</p>
+                <button onclick="window.location.href='#'">Learn More</button>
+            </div>
+            <div class="featured-course-item">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.wEBW67Z945m4hFY2k_J7lQHaEK&pid=Api&P=0&h=220"
+                    alt="AI and Machine Learning">
+                <h3>AI and Machine Learning</h3>
+                <p>Understand the basics of artificial intelligence and machine learning.</p>
+                <button onclick="window.location.href='#'">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Students Say</h2>
+        <div class="testimonial-list">
+            <div class="testimonial-item">
+                <p>"This platform has been a game-changer for my career. The courses are well-structured and easy to follow."
+                </p>
+                <h4>- Suman Singh</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love the variety of courses available. I’ve learned so much and feel more confident in my skills."</p>
+                <h4>- Ajay Kumar</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"The instructors are knowledgeable and the content is up-to-date with industry trends. Highly recommended!"
+                </p>
+                <h4>- John Davis</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter to receive the latest news and course updates.</p>
+        <form action="#" method="POST">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Learning Platform | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script src="/js/scripts.js"></script>
+</body>
+
+</html>
